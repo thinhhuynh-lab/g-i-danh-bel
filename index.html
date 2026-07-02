@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ngôi Sao Thông Điệp</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #1a1a3a 0%, #2c2c61 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+        }
+
+        /* Container chứa ngôi sao */
+        .star-container {
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .star-container:hover {
+            transform: scale(1.1);
+        }
+
+        /* Hình dạng ngôi sao (dùng CSS) */
+        .star {
+            font-size: 100px;
+            color: #ffd700; /* Màu vàng */
+            filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.6));
+            transition: all 0.3s ease;
+        }
+
+        .star-container.active .star {
+            color: #ffaa00;
+            transform: scale(0.9);
+        }
+
+        /* Hộp thông điệp (ẩn đi ban đầu) */
+        .message-box {
+            position: absolute;
+            top: 120%;
+            left: 50%;
+            transform: translateX(-50%) scale(0);
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            width: 250px;
+            text-align: center;
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            pointer-events: none; /* Tránh click nhầm khi ẩn */
+        }
+
+        /* Mũi tên nhỏ trỏ lên hộp thoại */
+        .message-box::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 0 10px 10px 10px;
+            border-style: solid;
+            border-color: transparent transparent rgba(255, 255, 255, 0.95) transparent;
+        }
+
+        /* Hiển thị thông điệp khi được kích hoạt */
+        .star-container.show-message .message-box {
+            opacity: 1;
+            transform: translateX(-50%) scale(1);
+            pointer-events: auto;
+        }
+
+        .message-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .message-text {
+            font-size: 14px;
+            color: #555;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Khối ngôi sao -->
+    <div class="star-container" id="starContainer">
+        <div class="star">&#9733;</div>
+        <div class="message-box">
+            <div class="message-title">✨ Thành Danh Bel ✨</div>
+            <div class="message-text">belllllllllllllll bellllllllll😭</div>
+        </div>
+    </div>
+
+    <script>
+        // Lấy phần tử ngôi sao và thông điệp
+        const starContainer = document.getElementById('starContainer');
+
+        // Lắng nghe sự kiện click
+        starContainer.addEventListener('click', function() {
+            // Bật/Tắt class 'show-message' để hiển thị hoặc ẩn thông điệp
+            this.classList.toggle('show-message');
+        });
+    </script>
+</body>
+</html>
